@@ -1,5 +1,10 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 import GlobalStyles from './index.css';
 
@@ -7,13 +12,22 @@ import theme from './utils/theme';
 
 import { Navigation } from 'components';
 
-function App() {
+const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <div className="App">
-        <Navigation items={[]} />
-      </div>
+
+      <Router>
+        <Navigation items={[
+          { content: 'Homepage', to: '/' },
+          { content: 'Budget', to: '/budget' }
+        ]} />
+
+        <Switch>
+          <Route path="/" exact>Home Page</Route>
+          <Route path="/budget">Budget Page</Route>
+        </Switch>
+      </Router>
     </ThemeProvider>
   );
 }
