@@ -1,9 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
-import { normalize } from 'styled-normalize';
+import { normalize } from 'styled-normalize'
 
 export default createGlobalStyle`
   ${normalize}
-  
+
   ul {
     list-style: none;
     margin: 0;

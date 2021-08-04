@@ -1,4 +1,4 @@
-const theme = {
+export default {
   spacing: {
     xs: 5,
     sm: 10,
@@ -21,5 +21,3 @@ const theme = {
     },
   },
 }
-
-export default theme;
