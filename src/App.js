@@ -14,6 +14,7 @@ import theme from './utils/theme';
 import Navigation from './components/Navigation/Navigation';
 import Wrapper from './components/Wrapper/Wrapper';
 import LoadingIndicator from './components/LoadingIndicator/LoadingIndicator';
+import Button from './components/Button/Button';
 
 const App = () => {
   const { i18n } = useTranslation();
@@ -30,8 +31,8 @@ const App = () => {
           ]}
           RightElement={(
             <div>
-              <button onClick={() => i18n.changeLanguage('pl')}>pl</button>
-              <button onClick={() => i18n.changeLanguage('en')}>en</button>
+              <Button variant='regular' onClick={() => i18n.changeLanguage('pl')}>pl</Button>
+              <Button variant='regular' onClick={() => i18n.changeLanguage('en')}>en</Button>
             </div>
           )}
         />
