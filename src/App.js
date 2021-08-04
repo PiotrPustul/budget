@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 import GlobalStyles from './index.css';
 
@@ -14,6 +15,8 @@ import Navigation from './components/Navigation/Navigation';
 import Wrapper from './components/Wrapper/Wrapper';
 
 const App = () => {
+  const { i18n } = useTranslation();
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
@@ -26,8 +29,8 @@ const App = () => {
           ]}
           RightElement={(
             <div>
-              <button>pl</button>
-              <button>en</button>
+              <button onClick={() => i18n.changeLanguage('pl')}>pl</button>
+              <button onClick={() => i18n.changeLanguage('en')}>en</button>
             </div>
           )}
         />
@@ -43,4 +46,12 @@ const App = () => {
   );
 };
 
-export default App;
+const RootApp = () => {
+  return (
+    <Suspense fallback="Loading...">
+      <App />
+    </Suspense>
+  );
+};
+
+export default RootApp;
