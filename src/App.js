@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import GlobalStyles from './index.css';
-import { fetchBudget } from './data/actions/budget.actions';
+import { fetchBudget, fetchBudgetedCategories } from './data/actions/budget.actions';
 import theme from './utils/theme';
 
 import Navigation from './components/Navigation/Navigation';
@@ -17,12 +17,13 @@ import Wrapper from './components/Wrapper/Wrapper';
 import LoadingIndicator from './components/LoadingIndicator/LoadingIndicator';
 import Button from './components/Button/Button';
 
-const App = ({ budget, fetchBudget }) => {
+const App = ({ budget, fetchBudget, fetchBudgetedCategories }) => {
   const { i18n } = useTranslation();
 
   useEffect(() => {
     fetchBudget(1);
-  }, [fetchBudget]);
+    fetchBudgetedCategories(1);
+  }, [fetchBudget, fetchBudgetedCategories]);
 
   return (
     <Fragment>
@@ -58,7 +59,8 @@ const ConnectedApp = connect(state => {
     budget: state.budget.budget,
   }
 }, {
-  fetchBudget
+  fetchBudget,
+  fetchBudgetedCategories,
 })(App);
 
 const RootApp = () => {
