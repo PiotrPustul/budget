@@ -1,4 +1,4 @@
-import React, { Suspense, Fragment, useEffect } from 'react';
+import React, { Suspense, Fragment } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   BrowserRouter as Router,
@@ -6,10 +6,9 @@ import {
   Route,
 } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
 
 import GlobalStyles from './index.css';
-import { fetchBudget, fetchBudgetedCategories } from './data/actions/budget.actions';
+
 import theme from './utils/theme';
 
 import Navigation from './components/Navigation/Navigation';
@@ -17,13 +16,10 @@ import Wrapper from './components/Wrapper/Wrapper';
 import LoadingIndicator from './components/LoadingIndicator/LoadingIndicator';
 import Button from './components/Button/Button';
 
+import Budget from './pages/Budget/Budget';
+
 const App = ({ budget, fetchBudget, fetchBudgetedCategories }) => {
   const { i18n } = useTranslation();
-
-  useEffect(() => {
-    fetchBudget(1);
-    fetchBudgetedCategories(1);
-  }, [fetchBudget, fetchBudgetedCategories]);
 
   return (
     <Fragment>
@@ -45,8 +41,12 @@ const App = ({ budget, fetchBudget, fetchBudgetedCategories }) => {
 
         <Wrapper>
           <Switch>
-            <Route exact path="/">Homepage</Route>
-            <Route path="/budget">Budget Page</Route>
+            <Route exact path="/">
+              Homepage
+            </Route>
+            <Route path="/budget" >
+              <Budget />
+            </Route>
           </Switch>
         </Wrapper>
       </Router>
@@ -54,20 +54,11 @@ const App = ({ budget, fetchBudget, fetchBudgetedCategories }) => {
   );
 };
 
-const ConnectedApp = connect(state => {
-  return {
-    budget: state.budget.budget,
-  }
-}, {
-  fetchBudget,
-  fetchBudgetedCategories,
-})(App);
-
 const RootApp = () => {
   return (
     <ThemeProvider theme={theme}>
       <Suspense fallback={<LoadingIndicator />}>
-        <ConnectedApp />
+        <App />
       </Suspense>
     </ThemeProvider >
   );

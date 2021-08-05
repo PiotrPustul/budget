@@ -6,11 +6,11 @@ import {
 } from '../constants/common.constants';
 
 const initialState = {
-   loadingState: {},
+   loadingState: null,
    allCategories: [],
 };
 
-const budget = (state = initialState, action) => {
+const commonReducer = (state = initialState, action) => {
    const newLoadingState = { ...state.loadingState };
 
    switch (action.type) {
@@ -44,4 +44,4 @@ const budget = (state = initialState, action) => {
    }
 };
 
-export default budget;
+export default commonReducer;

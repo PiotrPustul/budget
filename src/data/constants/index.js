@@ -1,5 +1,5 @@
 export * from './budget.constants';
-export * from './budget.constants';
+export * from './common.constants';
 
 //LOADING STATES
 export const LOADING_STATES = {

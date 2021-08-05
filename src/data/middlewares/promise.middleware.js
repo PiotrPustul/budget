@@ -20,11 +20,11 @@ export default function promiseMiddleware() {
                   type: SUCCESS,
                   payload: data,
                   ...rest
-               });
+               })
             })
             .catch(error => {
                next({ type: FAILURE, error, ...rest });
-            });
+            })
       }
    }
-};
+}
